@@ -261,10 +261,6 @@
                 <input type="password" name="password" id="password" class="form-control" required placeholder="Masukkan password Anda">
             </div>
             
-            <div class="forgot-password">
-                <a href="#">Lupa password?</a>
-            </div>
-            
             <button type="submit" class="btn btn-login btn-primary w-100">
                 <i class="fas fa-sign-in-alt me-2"></i> Login
             </button>

@@ -28,8 +28,11 @@ Route::middleware(['verify.token'])->group(function () {
     })->name('dashboard');
 
     // Menambahkan middleware pada route resource
-    Route::resource('mahasiswa', MahasiswaController::class);
-    Route::resource('matkul', MatkulController::class);
-    Route::resource('absensi', AbsensiController::class);
-    Route::resource('dosen', DosenController::class);
+    Route::middleware(['verify.role:admin'])->group(function () {
+        Route::resource('mahasiswa', MahasiswaController::class);
+        Route::resource('matkul', MatkulController::class);
+        Route::resource('absensi', AbsensiController::class);
+        Route::resource('dosen', DosenController::class);
+    });
+    
 });
