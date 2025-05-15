@@ -8,7 +8,7 @@ if ($user && $user->role === 'admin') {
 $menus = [
 (object)[ 'title' => 'Dashboard', 'path' => '/', 'icon' => 'ni ni-tv-2 text-primary' ],
 (object)[ 'title' => 'Dosen', 'path' => 'dosen', 'icon' => 'ni ni-circle-08 text-info' ],
-(object)[ 'title' => 'Mahasiswa', 'path' => 'mahasiswa', 'icon' => 'ni ni-circle-08 text-info' ],
+(object)[ 'title' => 'Mahasiswa', 'path' => 'mahasiswa', 'icon' => 'ni ni-hat-3 text-success' ],
 (object)[ 'title' => 'Mata Kuliah', 'path' => 'matkul', 'icon' => 'ni ni-books text-primary' ],
 (object)[ 'title' => 'Daftar Hadir', 'path' => 'absensi', 'icon' => 'ni ni-bullet-list-67 text-warning' ],
 ];
