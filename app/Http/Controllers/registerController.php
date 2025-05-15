@@ -22,7 +22,7 @@ class registerController extends Controller
         ]);
 
         // Kirim data ke API CodeIgniter
-        $response = Http::post(env('CODEIGNITER_API') . '/api/register', [
+        $response = Http::post('http://localhost:8080/api/register', [
             'email' => $request->email,
             'password' => $request->password,
             'role' => $request->role,  // Mengirimkan role

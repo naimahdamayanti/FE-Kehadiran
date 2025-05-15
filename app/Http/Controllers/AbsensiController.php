@@ -26,6 +26,20 @@ class AbsensiController extends Controller
 
         // Ambil langsung array data dari respons
         $absensi = $response->json();
+        $mahasiswaResponse = Http::get('http://localhost:8080/Mahasiswa');
+        if ($mahasiswaResponse->failed()) {
+            abort(500, 'Gagal mengambil data mahasiswa dari API.');
+        }
+        $mahasiswa = collect($mahasiswaResponse->json());
+
+        // Gabungkan data absensi dengan nama mahasiswa
+        $absensi = collect($absensi)->map(function ($item) use ($mahasiswa) {
+            $mahasiswaData = $mahasiswa->firstWhere('npm', $item['npm']);
+
+            // Ganti NPM dengan nama mahasiswa untuk ditampilkan
+            $item['npm'] = $mahasiswaData['nama_mahasiswa'] ?? 'Tidak Diketahui';
+            return $item;
+        });
 
         // Tampilkan ke view
         return view('absensi.index', compact('absensi'));

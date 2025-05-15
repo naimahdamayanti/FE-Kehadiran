@@ -40,7 +40,7 @@
             <tr>
                 <th scope="col"class="text-center w-auto">No</th>
                 <th scope="col"class="text-center w-auto">ID Kehadiran</th>
-                <th scope="col"class="text-center w-auto">NPM</th>
+                <th scope="col"class="text-center w-auto">Nama Mahasiswa</th>
                 <th scope="col"class="text-center w-auto">ID Dosen</th>
                 <th scope="col"class="text-center w-auto">ID Matkul</th>
                 <th scope="col"class="text-center w-auto">Pertemuan 1</th>

@@ -1,3 +1,4 @@
+
 @extends('layout')
 @section('title','Dashboard')
 @section('judul','Dashboard')
@@ -7,12 +8,26 @@
   <div class="container">
     <div class="row justify-content-center">
       @php
-      $cards = [
+      $user = session('user');
+
+      $card = [];
+
+      // Cek apakah user tidak null dan punya role
+     
+      if ($user && $user->role === 'admin') {
+         $cards = [
       ['title' => 'Total Dosen', 'model' => \App\Models\Dosen::class, 'route' => 'dosen.index', 'color' => 'bg-gradient-primary', 'icon' => 'ni ni-single-02'],
       ['title' => 'Total Mahasiswa', 'model' => \App\Models\Mahasiswa::class, 'route' => 'mahasiswa.index', 'color' => 'bg-gradient-danger', 'icon' => 'ni ni-hat-3'],
       ['title' => 'Mata Kuliah', 'model' => \App\Models\Matkul::class, 'route' => 'matkul.index', 'color' => 'bg-gradient-success', 'icon' => 'ni ni-books'],
       ['title' => 'Daftar Hadir', 'model' => \App\Models\Absensi::class, 'route' => 'absensi.index', 'color' => 'bg-gradient-warning', 'icon' => 'ni ni-check-bold']
       ];
+      }elseif ($user && $user->role === 'dosen'){
+      $cards = [
+      ['title' => 'Mata Kuliah', 'model' => \App\Models\Matkul::class, 'route' => 'matkul.index', 'color' => 'bg-gradient-success', 'icon' => 'ni ni-books'],
+      ['title' => 'Daftar Hadir', 'model' => \App\Models\Absensi::class, 'route' => 'absensi.index', 'color' => 'bg-gradient-warning', 'icon' => 'ni ni-check-bold']
+      ];
+      }
+     
       @endphp
 
       @foreach($cards as $card)

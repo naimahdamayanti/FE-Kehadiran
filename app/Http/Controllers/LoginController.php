@@ -34,12 +34,21 @@ class LoginController extends Controller
             if ($response->successful()) {
                 $data = $response->json();
 
-                // Simpan data ke session
+                // Cek apakah respons memiliki data user dan role
+                if (!isset($data['user']) || !isset($data['user']['role'])) {
+                    return back()->withErrors([
+                        'login_error' => 'Data user atau role tidak ditemukan dari API.'
+                    ]);
+                }
+
+                // Simpan data ke session, termasuk user dan role
                 session([
                     'token' => $data['token'],
                     'user_id' => $data['user_id'],
-                    'email' => $request->email
+                    'email' => $request->email,
+                    'user' => (object) $data['user'] // Simpan sebagai object supaya bisa akses ->role
                 ]);
+
 
                 return redirect()->route('dashboard')->with('success', 'Login berhasil!');
             }
