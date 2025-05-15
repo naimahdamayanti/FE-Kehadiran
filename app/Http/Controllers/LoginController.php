@@ -26,7 +26,7 @@ class LoginController extends Controller
         ]);
 
         try {
-            $response = Http::post(env('CODEIGNITER_API').'/api/login', [
+            $response = Http::post('http://localhost:8080/api/login', [
                 'email' => $request->email,
                 'password' => $request->password,
             ]);

@@ -19,6 +19,7 @@ return [
         'secret' => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
         'scheme' => 'https',
+        'codeigniter_api' => env('CODEIGNITER_API', 'http://localhost:8080'),
     ],
 
     'postmark' => [

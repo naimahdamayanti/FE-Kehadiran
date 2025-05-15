@@ -7,6 +7,7 @@ use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\registerController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\PDFController;
 
@@ -21,6 +22,9 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/register', [registerController::class, 'showRegisterForm'])->name('register.form');
+Route::post('/register', [registerController::class, 'register'])->name('register.submit');
+
 // Route yang perlu login
 Route::middleware(['verify.token'])->group(function () {
     Route::get('/', function () {
@@ -28,11 +32,8 @@ Route::middleware(['verify.token'])->group(function () {
     })->name('dashboard');
 
     // Menambahkan middleware pada route resource
-    Route::middleware(['verify.role:admin'])->group(function () {
-        Route::resource('mahasiswa', MahasiswaController::class);
-        Route::resource('matkul', MatkulController::class);
-        Route::resource('absensi', AbsensiController::class);
-        Route::resource('dosen', DosenController::class);
-    });
-    
+    Route::resource('mahasiswa', MahasiswaController::class);
+    Route::resource('matkul', MatkulController::class);
+    Route::resource('absensi', AbsensiController::class);
+    Route::resource('dosen', DosenController::class);
 });
