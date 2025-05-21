@@ -15,10 +15,6 @@
         <input value="{{ $mahasiswa->nama_mahasiswa }}" type="text" name="nama_mahasiswa" class="form-control">
     </div>
     <div class="form-group mb-2">
-        <label>Mata Kuliah</label>
-        <input value="{{ $mahasiswa->nama_matkul }}" type="text" name="nama_matkul" class="form-control">
-    </div>
-    <div class="form-group mb-2">
         <label>Jurusan</label>
         <input value="{{ $mahasiswa->jurusan }}" type="text" name="jurusan" class="form-control">
     </div>

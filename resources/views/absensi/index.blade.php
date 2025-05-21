@@ -23,13 +23,13 @@
 @endif
 <div class="container">
 <a href="{{ route('absensi.create')}}">
-  <button class="btn btn-icon btn-3 btn-danger" type="button">
-      <span class="btn-inner--icon"><i class="ni ni-button-play"></i></span>
+  <button class="btn btn-icon btn-3 btn-success" type="button">
+      <span class="btn-inner--icon me-2"><i class="fas fa-plus"></i></span>
     <span class="btn-inner--text">Isi Daftar Hadir</span>
   </button>
 </a>
 <a href="{{ route('export-pdf') }}" target="_blank">
-    <button class="btn btn-icon btn-3 btn-success" type="button">
+    <button class="btn btn-icon btn-3 btn-primary" type="button">
         <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>
         <span class="btn-inner--text">Export ke PDF</span>
     </button>
@@ -59,16 +59,21 @@
                 <td class="text-center">{{ $data['npm'] }}</td>
                 <td class="text-center">{{ $data['id_dosen'] }}</td>
                 <td class="text-center">{{ $data['id_matkul'] }}</td>
-                <td class="text-center">{{ $data['keterangan'] }}</td>
-                <td class="text-center">{{ $data['keterangan'] }}</td>
-                <td class="text-center">{{ $data['keterangan'] }}</td>
-                <td class="text-center">{{ $data['keterangan'] }}</td>
-                <td class="text-center">{{ $data['keterangan'] }}</td>
-                <!-- <td class="text-center">{{ $data['keterangan'] }}</td> -->
+                @for ($i = 1; $i <= 5; $i++)
+                    @php
+                        // Ambil keterangan untuk pertemuan saat ini
+                        $keterangan = $data['pertemuan'] == $i ? $data['keterangan'] : '';
+                    @endphp
+                    <td class="text-center">{{ $keterangan }}</td>
+                @endfor
+                
                 <td class="text-center">
-                      <a href="{{ route('absensi.edit', $data['id_kehadiran']) }}">
-                          <button class="btn btn-primary text">EDIT</button>
-                      </a>
+                    <a href="{{ route('absensi.edit', $data['id_kehadiran']) }}">
+                        <button class="btn btn-warning text-white" style="background-color: #ffc107; border-color: #ffc107;">
+                            EDIT
+                        </button>
+                    </a>
+
 
                       <form action="{{ route('absensi.destroy', $data['id_kehadiran']) }}" method="POST" style="display: inline;">
                           @csrf

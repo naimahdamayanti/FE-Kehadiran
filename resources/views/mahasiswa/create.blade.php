@@ -22,10 +22,6 @@
             <input type="text" name="nama_mahasiswa" type="text"  class="form-control">
         </div>
         <div class="form-group mb-2">
-            <label>Mata Kuliah</label>
-            <input type="text" name="nama_matkul" type="text"  class="form-control">
-        </div>
-        <div class="form-group mb-2">
             <label>Jurusan</label>
             <input type="text" name="jurusan" type="text"  class="form-control">
         </div>

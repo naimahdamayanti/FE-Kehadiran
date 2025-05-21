@@ -23,8 +23,8 @@
 @endif
 <div class="container">
 <a href="{{ route('matkul.create')}}">
-  <button class="btn btn-icon btn-3 btn-danger" type="button">
-      <span class="btn-inner--icon"><i class="ni ni-button-play"></i></span>
+  <button class="btn btn-icon btn-3 btn-success" type="button">
+      <span class="btn-inner--icon me-2"><i class="fas fa-plus"></i></span>
     <span class="btn-inner--text">Tambah Mata Kuliah</span>
   </button>
 </a>
@@ -49,7 +49,9 @@
                 <td class="text-center">{{ $data->semester }}</td>
                 <td class="text-center">
                       <a href="{{ route ('matkul.edit', $data->id_matkul) }}">
-                          <button class="btn btn-primary">EDIT</button>
+                          <button class="btn btn-warning text-white" style="background-color: #ffc107; border-color: #ffc107;">
+                              EDIT
+                          </button>
                       </a>
                       <form action="{{ route('matkul.destroy', $data['id_matkul']) }}" method="POST" style="display: inline;">
                           @csrf

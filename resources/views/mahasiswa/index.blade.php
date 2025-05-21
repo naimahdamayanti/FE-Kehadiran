@@ -23,10 +23,10 @@
 @endif
 <div class="container">
   <a href="{{ route('mahasiswa.create')}}">
-    <button class="btn btn-icon btn-3 btn-danger" type="button">
-      <span class="btn-inner--icon"><i class="ni ni-button-play"></i></span>
-      <span class="btn-inner--text">Tambah Mahasiswa</span>
-    </button>
+    <button class="btn btn-icon btn-3 btn-success" type="button">
+      <span class="btn-inner--icon me-2"><i class="fas fa-plus"></i></span>
+    <span class="btn-inner--text">Tambah Mahasiswa</span>
+  </button>
   </a>
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-layout-fixed">
@@ -35,7 +35,6 @@
           <th scope="col" class="text-center w-auto">No</th>
           <th scope="col" class="text-center w-auto">NPM</th>
           <th scope="col" class="text-center w-auto">Nama Mahasiswa</th>
-          <th scope="col" class="text-center w-auto">Mata Kuliah</th>
           <th scope="col" class="text-center w-auto">Jurusan</th>
           <th scope="col" class="text-center w-auto">Prodi</th>
           <th scope="col" class="text-center w-auto">Tahun Akademik</th>
@@ -48,13 +47,14 @@
           <td class="text-center w-auto">{{ $loop->iteration }}</td>
           <td class="text-center w-auto">{{ $data->npm }}</td>
           <td class="text-center w-auto">{{ $data->nama_mahasiswa }}</td>
-          <td class="text-center w-auto">{{ $data->nama_matkul }}</td>
           <td class="text-center w-auto">{{ $data->jurusan }}</td>
           <td class="text-center w-auto">{{ $data->prodi }}</td>
           <td class="text-center w-auto">{{ $data->tahun_akademik }}</td>
           <td class="text-center w-auto">
             <a href="{{ route ('mahasiswa.edit', $data->npm) }}">
-              <button class="btn btn-primary">EDIT</button>
+              <button class="btn btn-warning text-white" style="background-color: #ffc107; border-color: #ffc107;">
+                  EDIT
+              </button>
             </a>
             <form action="{{ route('mahasiswa.destroy', $data['npm']) }}" method="POST" style="display: inline;">
               @csrf

@@ -14,8 +14,8 @@ class DashboardController extends Controller
     public function index(){
         $dosen = Dosen::count();
         $mahasiswa = Mahasiswa::count();
-        $matkul = Schema::hasTable('matkul') ? Matkul::count() : 0;
-        $absensi = Schema::hasTable('absensi') ? Absensi::count() : 0;
+        $matkul = Matkul::count();
+        $absensi = Absensi::count();
     
         return view('dashboard', compact('dosen', 'mahasiswa', 'matkul', 'absensi'));
     }

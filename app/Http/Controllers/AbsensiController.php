@@ -65,33 +65,29 @@ class AbsensiController extends Controller
     /**
      * Simpan data absensi yang diisi dosen
      */
-    public function store(Request $request)
-    {
-        $request->merge([
-            'keterangan' => json_encode($request->keterangan),
-        ]);
+    public function store(Request $request) {
+    // Validasi input
+    $request->validate([
+        'id_kehadiran' => 'required|string',
+        'npm' => 'required|string',
+        'id_dosen' => 'required|integer',
+        'id_matkul' => 'required|integer',
+        'pertemuan' => 'required|integer',
+        'keterangan' => 'required|string|in:H,A,I,S', // Bukan array
+    ]);
 
-        $request->validate([
-            'pertemuan' => 'required|integer',
-            'keterangan' => 'required|array',
-            
-        ]);
+    // Simpan data absensi
+    Absensi::create([
+        'id_kehadiran' => $request->id_kehadiran,
+        'npm' => $request->npm,
+        'id_dosen' => $request->id_dosen,
+        'id_matkul' => $request->id_matkul,
+        'pertemuan' => $request->pertemuan,
+        'keterangan' => $request->keterangan,
+    ]);
 
-        foreach ($request->keterangan as $npm => $keterangan) {
-            Absensi::create([
-                'npm' => $npm,
-                'id_dosen' => $request->id_dosen,
-                'id_matkul' => $request->id_matkul,
-                'pertemuan' => $request->pertemuan,
-                'keterangan' => $keterangan,
-            ]);
-            
-        
-            return redirect()->route('absensi.index')->with('success', 'Absensi berhasil disimpan.');
+    return redirect()->route('absensi.index')->with('success', 'Absensi berhasil disimpan.');
     }
-    
-}
-
 
     public function edit(string $id_kehadiran){
         // Ambil data absensi berdasarkan id_absensi

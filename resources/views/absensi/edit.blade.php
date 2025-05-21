@@ -5,26 +5,37 @@
 <form action="{{ route('absensi.update', $absensi->id_kehadiran) }}" method="post">
         @csrf
         <div class="form-group mb-2">
-          <label>NPM</label>
-            <input value="{{ $absensi->npm }}" type="text" name="npm" 
-          class="form-control">
+            <label>ID Kehadiran</label>
+            <input type="text" name="id_kehadiran" value="{{ old('id_kehadiran') }}" class="form-control">
         </div>
         <div class="form-group mb-2">
-          <label>ID Dosen</label>
-            <input value="{{ $absensi->id_dosen }}" type="text" name="id_dosen" 
-          class="form-control">
+            <label>NPM</label>
+            <input type="text" name="npm" value="{{ old('npm') }}" class="form-control">
         </div>
         <div class="form-group mb-2">
-          <label>Pertemuan</label>
-            <input value="{{ $absensi->pertemuan }}" type="text" name="pertemuan" 
-          class="form-control">
+            <label>ID Dosen</label>
+            <input type="text" name="id_dosen" value="{{ old('id_dosen') }}" class="form-control">
+        </div>
+
+        <div class="form-group mb-2">
+        <label>Pertemuan</label>
+        <select class="form-control" name="pertemuan">
+            <option value="">--Pilih Pertemuan--</option>
+            @for ($i = 1; $i <= 16; $i++)
+                <option value="{{ $i }}" {{ old('pertemuan') == $i ? 'selected' : '' }}>Pertemuan {{ $i }}</option>
+            @endfor
+        </select>
         </div>
         <div class="form-group mb-2">
-          <label>Keterangan</label>
-            <input value="{{ $absensi->keterangan }}" type="text" name="keterangan" 
-          class="form-control">
+            <label>Keterangan</label>
+            <select name="keterangan" class="form-control">
+                <option value="">--Pilih Keterangan--</option>
+                <option value="H" {{ old('keterangan') == 'H' ? 'selected' : '' }}>Hadir</option>
+                <option value="I" {{ old('keterangan') == 'I' ? 'selected' : '' }}>Izin</option>
+                <option value="S" {{ old('keterangan') == 'S' ? 'selected' : '' }}>Sakit</option>
+                <option value="A" {{ old('keterangan') == 'A' ? 'selected' : '' }}>Absen</option>
+            </select>
         </div>
-      
         <div class="form-group">
             <button class="btn btn-primary" type="submit">Save</button>
         </div>

@@ -24,10 +24,10 @@
 @endif
 <div class="container-fluid">
   <a href="{{ route('dosen.create') }}">
-    <button class="btn btn-icon btn-3 btn-danger mb-3" type="button">
-      <span class="btn-inner--icon"><i class="ni ni-button-play"></i></span>
-      <span class="btn-inner--text">Tambah Dosen</span>
-    </button>
+    <button class="btn btn-icon btn-3 btn-success" type="button">
+      <span class="btn-inner--icon me-2"><i class="fas fa-plus"></i></span>
+    <span class="btn-inner--text">Tambah Dosen</span>
+  </button>
   </a>
 
   <div class="table-responsive">
@@ -48,8 +48,10 @@
           <td>{{ $data['nama_dosen'] }}</td>
           <td>
             <a href="{{ route('dosen.edit', $data['id_dosen']) }}">
-              <button class="btn btn-primary btn-sm">EDIT</button>
-            </a>
+              <button class="btn btn-warning text-white" style="background-color: #ffc107; border-color: #ffc107;">
+                  EDIT
+              </button>
+              </a>
             <form action="{{ route('dosen.destroy', $data['id_dosen']) }}" method="POST" style="display: inline;">
               @csrf
               @method('DELETE')
